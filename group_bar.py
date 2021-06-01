@@ -1,17 +1,17 @@
+"""Group Bar plot for asean countries"""
 import csv
 import json
 from collections import defaultdict
 
 
 def convert_group():
-
-    years = [x for x in range(2004, 2015)]
-    y1 = []
+    """This function convert required data in json"""
+    # years = [x for x in range(2004, 2015)]
     asean = []
 
     with open("dataset/asean.csv", "r") as csvfile:
-        rd = list(csv.DictReader(csvfile, delimiter=","))
-        for row in rd:
+        read = list(csv.DictReader(csvfile, delimiter=","))
+        for row in read:
             asean.append(row["Country_Name"])
 
     with open("population-estimates_csv.csv", "r") as csvfile:
@@ -22,18 +22,18 @@ def convert_group():
             if row["Region"] in asean and 2004 <= int(row["Year"]) <= 2014:
                 asean_population.append(row)
 
-
-        d = defaultdict(int)
+        data_p = defaultdict(int)
         for i in asean:
-            y = []
+            temp = []
             for row in asean_population:
                 if row["Region"] == i:
-                    y.append(float(row["Population"]))
-            d[i] = y
+                    temp.append(float(row["Population"]))
+            data_p[i] = temp
         # for i in d:
         #     print(i, d[i])
 
-    data = [{'name':i, 'data':d[i]} for i in d]
+    data = [{"name": i, "data": data_p[i]} for i in data_p]
+
     with open("plot_file/group1.json", "w") as jsonf:
         jsonf.write(json.dumps(data, indent=4))
 

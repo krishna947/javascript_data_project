@@ -1,6 +1,18 @@
 #container {
   height: 400px; 
 }
+a{
+  margin: 10px;
+  padding: 10px;
+  background-color: orange;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 20px;
+}
+a:hover{
+  background-color: black;
+  color: white;
+}
 .highcharts-description{
   text-align: center;
 }

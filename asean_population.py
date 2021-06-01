@@ -1,17 +1,18 @@
+"""asean population"""
 import csv
 import json
-import matplotlib.pyplot as plt
 from collections import defaultdict
 
 
 def convert_asean():
+    """This function convert required data in json"""
     population = []
     asean_name = []
-    population_asean_2014 = defaultdict(int)
+    asean_2014 = defaultdict(int)
 
     with open("dataset/asean.csv", "r") as csvfile:
-        rd = list(csv.DictReader(csvfile, delimiter=","))
-        for row in rd:
+        read = list(csv.DictReader(csvfile, delimiter=","))
+        for row in read:
             asean_name.append(row["Country_Name"])
         # print(asean_name)
 
@@ -29,12 +30,12 @@ def convert_asean():
                 row["Region"] = "Brunei"
             elif row["Region"] == "Viet Nam":
                 row["Region"] = "Vietnam"
-            population_asean_2014[row["Region"]] = row["Population"]
-    
-    data = [[key, float(population_asean_2014[key])] for key in population_asean_2014]
+            asean_2014[row["Region"]] = row["Population"]
+
+    data = [[key, float(asean_2014[key])] for key in asean_2014]
+
     with open("plot_file/asean1.json", "w") as jsonf:
         jsonf.write(json.dumps(data, indent=4))
-    
 
 
 if __name__ == "__main__":

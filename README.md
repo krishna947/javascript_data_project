@@ -22,7 +22,7 @@ python3 -m http.server
 This command will start the server and also provide the link with that click on that link to visit the website.
 
 Alternatively,
-Click this <a href="">Link</a> to see the live website hosted on Heroku.
+Click this <a href="https://javascript-data-project.herokuapp.com/">Link</a> to see the live website hosted on Heroku.
 
 
 
